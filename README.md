@@ -60,4 +60,4 @@ O app solicita permissões de:
 - Aplicar filtros nas imagens
 
 ## 👨‍💻 Autor
-#### Desenvolvido por @CIGR2021 💙
+#### Desenvolvido por [@CIGR2021](https://github.com/CIGR2021) 💙
