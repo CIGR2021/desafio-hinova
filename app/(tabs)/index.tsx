@@ -1,56 +1,76 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import 'expo-router/entry'
+import { StyleSheet, FlatList, Pressable, Dimensions, ImageBackground } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { Image } from 'expo-image';
+import { usePhotoGalery } from '@/context/PhotoGalery';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { colorSecondary } from '@/constants/Colors';
+import { useEffect } from 'react';
+import { IconSymbol } from '@/components/ui/IconSymbol';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+// import { Center } from '@/components/ui/center';
+// import { HStack } from '@/components/ui/hstack';
+// import { Box } from '@/components/ui/box';
+// import fetchPhotos from '@/models/fetchPhotos';
+
+const image = '../../assets/images/photo-film-background.png'
 
 export default function HomeScreen() {
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+  const STATE = usePhotoGalery();
+
+  useEffect(() => {
+    // fetchPhotos(STATE.setPhotos)
+    return STATE.setSelected(null)
+  }, [])
+
+  const handleSelect = (item: any) => {
+    if (item !== STATE.selected) {
+      STATE.setSelected(item),
+      navigation.navigate('preview')
+    } else STATE.setSelected(null)
+  }
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <SafeAreaProvider>
+      <SafeAreaView edges={['left', 'right']}>
+        <ImageBackground style={styles.imageBack} source={require(image)} resizeMode='repeat' >
+          <ThemedView style={[styles.container, { marginBottom: 170 }]}>
+            <ThemedText style={[styles.titleContainer, { borderRadius: 50, padding: 5, marginTop: -10, backgroundColor: STATE.photos.length ? 'orange' : 'red' }]} type='title'>{
+              STATE.photos.length ? 'Sessão de Fotos' : 'Clique na camera e comece a fotografar'
+            }</ThemedText>
+            {!STATE.photos.length && (
+              <Pressable style={{ alignItems: 'center', marginTop: 8 }} onPress={() => navigation.navigate('camera')}>
+                <IconSymbol style={{ borderColor: 'white', borderBottomWidth: 6, borderTopWidth: 6, borderRadius: 50 }} size={200} name="camera" color={'white'} />
+              </Pressable>
+            )}
+              {STATE.photos.length ? (
+                <FlatList
+                  data={STATE.photos}
+                  renderItem={({ item }) => (
+                      <ThemedView>
+                        <Pressable onPress={() => handleSelect(item)}>
+                          <Image
+                            source={item.uri}
+                            contentFit="cover"
+                            style={[styles.image, { borderBlockColor: STATE.selected && STATE.selected.id == item.id ? 'red' : colorSecondary }]}
+                          />
+                        </Pressable>
+                      </ThemedView>
+                  )}
+                  style={{ alignSelf: 'center' }}
+                  keyExtractor={item => item.id}
+                />
+              ) : (
+                <></>
+              )}
+          </ThemedView>
+        </ImageBackground >
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
@@ -58,17 +78,24 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    textAlign: 'center',
+    marginBottom: 5
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  container: {
+    borderRadius: 15,
+    backgroundColor: 'transparent',
+    padding: 10
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  image: {
+    width: 'auto',
+    aspectRatio: 1,
+    minHeight: 200,
+    borderWidth: 5,
+    marginBottom: 10
   },
+  imageBack: {
+    marginTop: 45,
+    width: Dimensions.get('screen').width,
+    height: Dimensions.get('screen').height
+  }
 });
