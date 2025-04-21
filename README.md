@@ -1,50 +1,61 @@
-# Welcome to your Expo app 👋
+# 📸 App de Galeria de Imagens
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Um aplicativo mobile desenvolvido com **React Native** e **Expo**, que permite tirar fotos usando a câmera do celular e exibi-las na página principal do app como uma galeria.
 
-## Get started
+## 🚀 Funcionalidades
 
-1. Install dependencies
+- Acesso à câmera do dispositivo
+- Captura de fotos diretamente pelo app
+- Exibição das fotos tiradas na tela inicial em formato de galeria
+- Armazenamento em Store (usando o Context API)
 
-   ```bash
-   npm install
-   ```
+## 🛠️ Tecnologias Utilizadas
 
-2. Start the app
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [expo-camera](https://docs.expo.dev/versions/latest/sdk/camera/)
+- [React Navigation (opcional)](https://reactnavigation.org/) — se você estiver usando navegação entre telas
 
-   ```bash
-    npx expo start
-   ```
+## 📱 Como Usar
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### 1. Clone o repositório
 
 ```bash
-npm run reset-project
+git clone https://github.com/CIGR2021/desafio-hinova.git
+cd desafio-hinova
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Instale as dependências
 
-## Learn more
+npm install
+# ou
+yarn install
 
-To learn more about developing your project with Expo, look at the following resources:
+### 3. Inicie o projeto com Expo ou NPM
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+npx expo start
+# ou
+npm start
 
-## Join the community
+#### Use o app Expo Go no seu celular para escanear o QR Code e testar o aplicativo diretamente no dispositivo.
 
-Join our community of developers creating universal apps.
+## ⚙️ Permissões Necessárias
+### O app solicita permissões de:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Acesso à câmera
+
+### Acesso à galeria de mídia (armazenamento)
+
+### Certifique-se de aceitar essas permissões para o app funcionar corretamente.
+
+## 📌 Possíveis Melhorias Futuras
+### Persistência das imagens mesmo após reiniciar o app
+
+###Compartilhamento e exclusão de imagens
+
+### Upload das fotos para a nuvem (Firebase, AWS, etc.)
+
+### Aplicar filtros nas imagens
+
+## 👨‍💻 Autor
+### Desenvolvido por @CIGR2021 💙
