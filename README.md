@@ -43,7 +43,7 @@ npx expo start
 npm start
 ```
 
-#### Use o app Expo Go no seu celular para escanear o QR Code e testar o aplicativo diretamente no dispositivo.
+##### Use o app Expo Go no seu celular para escanear o QR Code e testar o aplicativo diretamente no dispositivo.
 
 ## ⚙️ Permissões Necessárias
 O app solicita permissões de:
