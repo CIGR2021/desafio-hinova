@@ -26,16 +26,22 @@ cd desafio-hinova
 ```
 
 ### 2. Instale as dependências
-
+```bash
 npm install
+```
 #### ou
+```bash
 yarn install
+```
 
 ### 3. Inicie o projeto com Expo ou NPM
-
+```bash
 npx expo start
+```
 #### ou
+```bash
 npm start
+```
 
 #### Use o app Expo Go no seu celular para escanear o QR Code e testar o aplicativo diretamente no dispositivo.
 
@@ -44,7 +50,7 @@ O app solicita permissões de:
 
 - Acesso à câmera
 
-- Acesso à e a localização
+- Acesso à localização
 
 ##### Certifique-se de aceitar essas permissões para o app funcionar corretamente.
 
