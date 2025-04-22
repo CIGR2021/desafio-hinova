@@ -14,7 +14,7 @@ Um aplicativo mobile desenvolvido com **React Native** e **Expo**, que permite t
 - [React Native](https://reactnative.dev/)
 - [Expo](https://expo.dev/)
 - [expo-camera](https://docs.expo.dev/versions/latest/sdk/camera/)
-- [React Navigation (opcional)](https://reactnavigation.org/) — se você estiver usando navegação entre telas
+- [React Navigation ](https://reactnavigation.org/) para navegação!
 
 ## 📱 Como Usar
 
